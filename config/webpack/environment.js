@@ -17,7 +17,7 @@ environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
 environment.plugins.prepend(
   'Define',
   new DefinePlugin({
-    __VUE_OPTIONS_API__: false,
+    __VUE_OPTIONS_API__: true,
     // or __VUE_OPTIONS_API__: true,
     __VUE_PROD_DEVTOOLS__: false
   })

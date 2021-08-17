@@ -1,13 +1,12 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import product from './modules/Product';
+import author from './modules/Author';
 
-export default createStore({
-  state: {
-    authorName: "Zainudin"
-  },
-  mutations: {
-  },
-  actions: {
-  },
+const store = createStore({
   modules: {
-  }
+    author,
+    product
+  },
 })
+
+export default store;
