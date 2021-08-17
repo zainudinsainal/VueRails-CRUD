@@ -23,7 +23,9 @@
                   class="btn btn-primary"
                   >Edit</router-link
                 >
-                <button class="btn btn-danger ml-2">Delete</button>
+                <button class="btn btn-danger ml-2" @click="deleteProductModal">
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
@@ -53,6 +55,16 @@ export default {
       // axios.get(uri, this.product).then((response) => {
       //   console.log(response.data);
       // });
+    },
+    deleteProductModal() {
+      this.$swal.fire({
+        // title: "Error!",
+        text: "Are you sure to delete the product ?",
+        icon: "error",
+        cancelButtonText: "Cancel",
+        confirmButtonText: "Yes, Confirm Delete",
+        showCancelButton: true
+      });
     },
   },
 };

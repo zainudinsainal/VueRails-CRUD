@@ -15,6 +15,7 @@
     "vue": "^3.1.5",
     "vue-loader": "^16.4.1",
     "vue-router": "4.0.10",
+    "vue-sweetalert2": "^5.0.2",
     "vuex": "4.0.2",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
