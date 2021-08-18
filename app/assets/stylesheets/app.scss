@@ -4,3 +4,6 @@ $body-color: #111;
 // Then import Bootstrap an BootstrapVue SCSS files (order is important)
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
+@import 'nprogress/nprogress.css';
+@import 'sweetalert2/dist/sweetalert2.min.css';
+

@@ -36,21 +36,11 @@ const routes = [
     path: '/products/edit/:id',
     name: 'ProductEdit',
     component: () => import('../views/products/ProductEdit.vue')
-  },
-  {
-    path: '/employees',
-    name: 'Employees',
-    component: () => import('../components/employees/index.vue')
-  },
-  {
-    path: '/employees/new',
-    name: 'New Employee',
-    component: () => import('../components/employees/new.vue')
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 })
 

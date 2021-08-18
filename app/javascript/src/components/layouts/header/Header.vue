@@ -4,17 +4,6 @@
       <router-link to="/" class="navbar-brand"># Advance Vue CRUD </router-link>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/employees" class="nav-link">
-            <i class="fa fa-shopping-cart"></i>
-            Employees
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/employees/new" class="nav-link">
-            <i class="fa fa-plus-circle"></i> Add Emp
-          </router-link>
-        </li>
-        <li class="nav-item">
           <router-link to="/products" class="nav-link">
             <i class="fa fa-shopping-cart"></i>
             Products
