@@ -2,34 +2,30 @@
   <div class="container">
     <h4 class="text-left mb-2">All Products</h4>
     <div class="">
-      <div class="">
+      <div class="" v-if="!isLoading">
         <table class="table table-hover">
           <thead>
             <tr>
               <td>Sl</td>
-              <td>Item Name</td>
-              <td>Item Price</td>
+              <td>Product Name</td>
+              <td>Product Price</td>
+              <td>Uploaded By</td>
               <td>Actions</td>
             </tr>
           </thead>
 
           <tbody>
-            <tr v-for="(item, index) in products" :key="item.id">
-              <td>{{ index + 1 }}</td>
-              <td>{{ item.name }}</td>
-              <td><strong class="text-danger">$ {{ item.price }}</strong></td>
-              <td>
-                <router-link :to="{ name: 'ProductEdit', params: { id: item.id } }"
-                  class="btn btn-primary"
-                  >Edit</router-link
-                >
-                <button class="btn btn-danger ml-2" @click="deleteProductModal">
-                  Delete
-                </button>
-              </td>
+            <tr v-for="(product, index) in products" :key="product.id">
+              <product-detail :index="index" :product="product" />
             </tr>
           </tbody>
         </table>
+      </div>
+      <div v-if="isLoading" class="text-center mt-5 mb-5">
+        Loading Products...
+        <div class="spinner-grow" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
     </div>
   </div>
@@ -37,24 +33,31 @@
 
 <script>
 import axios from "axios";
+import ProductDetail from "../list/ProductDetail";
 
 export default {
+  components: {
+    ProductDetail,
+  },
   data() {
     return {
-      products: []
+      products: [],
+      isLoading: false,
     };
   },
-  created() {
+  mounted() {
     this.loadProducts();
   },
   methods: {
     async loadProducts() {
+      this.isLoading = true;
       try {
         const data = await axios.get('/api/products.json');
         this.products = data.data.products;
       } catch (err) {
         console.log('error', err);
       }
+      this.isLoading = false
     },
     deleteProductModal() {
       this.$swal.fire({
