@@ -13,7 +13,6 @@
     "nprogress": "^0.2.0",
     "turbolinks": "^5.2.0",
     "vue": "^3.1.5",
-    "vue-fragment": "^1.5.2",
     "vue-loader": "^16.4.1",
     "vue-router": "4.0.10",
     "vue-sweetalert2": "^5.0.2",

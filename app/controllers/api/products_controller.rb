@@ -16,7 +16,7 @@ class Api::ProductsController < Api::ApiController
   end
 
   def create
-    sleep 2
+    sleep 1
     @product = Product.new(product_params)
 
     if @product.save
