@@ -7,6 +7,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'nprogress/nprogress.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'sweetalert2/dist/sweetalert2.min.css';
+import './stylesheets/style.scss';
 
 export default () => {
   document.addEventListener('DOMContentLoaded', () => {

@@ -1,6 +1,22 @@
 <template>
   <div class="home">
-    <h2>Welcome to Vue JS 3</h2>
+    <div class="p-4">
+      <div class="row">
+        <div class="col-md-2">
+          <router-link to="/products" class="btn btn-primary p-4 dashboard-widget">
+            All Products
+            <span class="badge badge-success">
+              20
+            </span>
+          </router-link>
+        </div>
+        <div class="col-md-2">
+          <router-link to="/products/create" class="btn btn-primary p-4 dashboard-widget">
+            Create New Product
+          </router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,7 +26,7 @@
 export default {
   name: 'Home',
   components: {
-    // HelloWorld
+
   }
 }
 </script>
