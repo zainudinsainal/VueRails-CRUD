@@ -19,16 +19,16 @@
           <div class="form-group row">
             <div class="col-12">
               <label>Product Details:</label>
-              <textarea
-                type="number"
-                class="form-control"
-                v-model="product.description"
-              ></textarea>
+              <textarea class="form-control" v-model="product.description" />
             </div>
           </div>
           <div class="form-group">
-              <router-link to="/products" class="btn btn-secondary mr-2">Cancel</router-link>
-            <input type="submit" class="btn btn-primary" value="Add Product" />
+            <router-link to="/products" class="btn btn-secondary mr-2">Cancel</router-link>
+            <input type="submit" class="btn btn-primary" value="Add Product" v-if="!isCreating" />
+            <button type="button" class="btn btn-primary" v-if="isCreating">
+              <div class="spinner-grow text-primary" role="status"></div>
+              Saving...
+            </button>
           </div>
         </form>
       </div>
@@ -42,15 +42,41 @@ export default {
   data() {
     return {
       product: {},
+      isCreating: false,
     };
   },
+  created() {
+    this.loadProduct();
+  },
   methods: {
-    saveProduct() {
-      let uri = "http://localhost:3000/product";
-      axios.post(uri, this.product).then((response) => {
-        console.log(response.data);
-      });
+    async loadProduct() {
+      try {
+        const data = await axios.get('/api/products/new.json');
+        this.product = data.data.product;
+      } catch {
+        console.log('error', err);
+      }
     },
+    async saveProduct() {
+      this.isCreating = true
+      try {
+        const response = await axios.post('/api/products.json', { product: this.product })
+
+        if (response.status === 200) {
+          this.$swal.fire({
+            text: "Success, Product has been added.",
+            icon: "success",
+          });
+          this.$router.push({ name: "Products" });
+        } else if (response.status === 422) {
+          console.log('response', response)
+        }
+        this.isCreating = false
+      } catch (err) {
+        console.log('error', err);
+      }
+      this.isCreating = false
+    }
   },
 };
 </script>
