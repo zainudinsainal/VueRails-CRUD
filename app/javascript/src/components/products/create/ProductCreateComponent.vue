@@ -23,10 +23,21 @@
             </div>
           </div>
           <div class="form-group">
-            <router-link to="/products" class="btn btn-secondary mr-2">Cancel</router-link>
-            <input type="submit" class="btn btn-primary" value="Add Product" v-if="!isCreating" />
-            <button type="button" class="btn btn-primary" v-if="isCreating">
-              <div class="spinner-grow text-primary" role="status"></div>
+            <router-link to="/products" class="btn btn-secondary mr-2"
+              >Cancel</router-link
+            >
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Add Product"
+              v-if="!isCreating"
+            />
+            <button class="btn btn-primary" type="button" disabled v-if="isCreating">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
               Saving...
             </button>
           </div>

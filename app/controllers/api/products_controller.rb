@@ -16,7 +16,7 @@ class Api::ProductsController < Api::ApiController
   end
 
   def create
-    p params
+    sleep 2
     @product = Product.new(product_params)
 
     if @product.save
@@ -30,6 +30,7 @@ class Api::ProductsController < Api::ApiController
   end
 
   def update
+    sleep 2
     if @product.update(product_params)
       render json: @product, status: :ok
     else
