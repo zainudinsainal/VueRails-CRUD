@@ -27,10 +27,11 @@ class Api::ProductsController < Api::ApiController
   end
 
   def edit
+    render json: @product
   end
 
   def update
-    sleep 2
+    sleep 1
     if @product.update(product_params)
       render json: @product, status: :ok
     else

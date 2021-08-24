@@ -67,7 +67,7 @@ export default {
       try {
         const data = await axios.get('/api/products/new.json');
         this.product = data.data.product;
-      } catch {
+      } catch (err) {
         console.log('error', err);
       }
     },
