@@ -14,12 +14,12 @@
           </thead>
 
           <tbody>
-            <tr v-for="item in products" :key="item._id">
-              <td>{{ item._id }}</td>
+            <tr v-for="(item, index) in products" :key="item.id">
+              <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
-              <td>{{ item.price }}</td>
+              <td><strong class="text-danger">$ {{ item.price }}</strong></td>
               <td>
-                <router-link :to="{ name: 'ProductEdit', params: { id: item._id } }"
+                <router-link :to="{ name: 'ProductEdit', params: { id: item.id } }"
                   class="btn btn-primary"
                   >Edit</router-link
                 >
@@ -36,25 +36,25 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
+
 export default {
   data() {
     return {
-      products: [
-        {
-          _id: 1,
-          name: "Smasung Gallaxy J10",
-          price: 100,
-        },
-      ],
+      products: []
     };
   },
+  created() {
+    this.loadProducts();
+  },
   methods: {
-    getAllProducts() {
-      // let uri = "http://localhost:4000/products/list";
-      // axios.get(uri, this.product).then((response) => {
-      //   console.log(response.data);
-      // });
+    async loadProducts() {
+      try {
+        const data = await axios.get('/api/products.json');
+        this.products = data.data.products;
+      } catch (err) {
+        console.log('error', err);
+      }
     },
     deleteProductModal() {
       this.$swal.fire({
@@ -63,7 +63,7 @@ export default {
         icon: "error",
         cancelButtonText: "Cancel",
         confirmButtonText: "Yes, Confirm Delete",
-        showCancelButton: true
+        showCancelButton: true,
       });
     },
   },
