@@ -7,9 +7,14 @@
       <router-link
         :to="{ name: 'ProductEdit', params: { id: product.id } }"
         class="btn btn-primary"
-        >Edit</router-link>
-      <button class="btn btn-danger ml-2" @click="deleteProductModal(product.id)">
-        Delete
+        title="Edit Product">
+        <i class="fa fa-pencil"></i>
+      </router-link>
+      <button
+        class="btn btn-danger ml-2"
+        @click="deleteProductModal(product.id)"
+        title="Delete Product">
+        <i class="fa fa-trash"></i>
       </button>
     </div>
   </div>
