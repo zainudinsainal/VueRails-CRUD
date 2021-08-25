@@ -1,6 +1,5 @@
 <template>
   <div class="row border-1 p-2">
-    <div class="col-1 text-left">{{ index + 1 }}</div>
     <div class="col-3">{{ product.name }}</div>
     <div class="col-2"><strong class="text-danger">{{ product.price }} $</strong></div>
     <div class="col-3"><span class="badge badge-info">Username</span></div>

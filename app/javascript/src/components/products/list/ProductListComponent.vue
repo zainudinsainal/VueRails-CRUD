@@ -4,7 +4,6 @@
     <div class="">
       <div class="" v-if="!isLoading">
         <div class="row border-bottom border-top p-2 bg-light">
-          <div class="col-1">Sl</div>
           <div class="col-3">Product Name</div>
           <div class="col-2">Product Price</div>
           <div class="col-3">Uploaded By</div>
@@ -21,21 +20,35 @@
         </div>
       </div>
     </div>
+
+    <!-- Insert Pagination Part -->
+    <v-pagination
+      v-if="pagination"
+      class="vertical-center mt-2 mb-5"
+      v-model="pagination.page"
+      :pages="pagination.last"
+      :range-size="1"
+      active-color="#DCEDFF"
+      @update:modelValue="updateHandler"
+    />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import ProductDetail from "../list/ProductDetail";
+import VPagination from "@hennge/vue3-pagination";
 
 export default {
   components: {
     ProductDetail,
+    VPagination
   },
   data() {
     return {
       products: [],
       isLoading: false,
+      pagination: null,
     };
   },
   mounted() {
@@ -45,12 +58,14 @@ export default {
     async loadProducts() {
       this.isLoading = true;
       try {
-        const data = await axios.get('/api/products.json');
+        console.log('test')
+        const data = await axios.get('/api/products.json', { params: this.$route.query });
         this.products = data.data.products;
+        this.pagination = data.data.meta.pagination;
       } catch (err) {
         console.log('error', err);
       }
-      this.isLoading = false
+      this.isLoading = false;
     },
     deleteProductModal() {
       this.$swal.fire({
@@ -62,6 +77,10 @@ export default {
         showCancelButton: true,
       });
     },
+    updateHandler(page) {
+      this.$route.query.page = page;
+      this.loadProducts();
+    }
   },
 };
 </script>

@@ -2,8 +2,10 @@ class Api::ProductsController < Api::ApiController
   before_action :set_product, only: [:show, :edit, :update]
 
   def index
-    @products = Product.all
-    render json: @products
+    @pagy, @products = pagy(Product.all, items: 5)
+
+    # https://github.com/rails-api/active_model_serializers/blob/v0.10.6/docs/howto/add_pagination_links.md
+    render json: @products, meta: meta_attributes(@pagy)
   end
 
   def show

@@ -7,11 +7,12 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'nprogress/nprogress.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'sweetalert2/dist/sweetalert2.min.css';
+import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import './stylesheets/style.scss';
 
 export default () => {
   document.addEventListener('DOMContentLoaded', () => {
-    const app = createApp(App)
+    const app = createApp(App);
     app.use(VueSweetalert2);
     app.use(store)
     app.use(router)
