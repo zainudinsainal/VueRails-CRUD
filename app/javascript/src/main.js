@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import router from '@/router'
-import store from './store'
+import store from '@/store'
 import App from '@/App.vue'
+import instance from '@/utils/axios.js';
 import VueSweetalert2 from 'vue-sweetalert2';
 
 import 'nprogress/nprogress.css';
@@ -14,9 +15,10 @@ import './stylesheets/style.scss';
 export default () => {
   document.addEventListener('DOMContentLoaded', () => {
     const app = createApp(App);
-    app.use(VueSweetalert2);
     app.use(store)
     app.use(router)
+    app.use(VueSweetalert2);
+    app.provide('$axios', instance)
     app.mount('#vue-app')
   })
 }

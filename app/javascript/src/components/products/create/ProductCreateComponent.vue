@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
+  inject: ['$axios'],
   data() {
     return {
       product: {},
@@ -65,7 +65,7 @@ export default {
   methods: {
     async loadProduct() {
       try {
-        const data = await axios.get('/api/products/new.json');
+        const data = await this.$axios.get('/api/products/new.json');
         this.product = data.data.product;
       } catch (err) {
         console.log('error', err);
@@ -74,7 +74,7 @@ export default {
     async saveProduct() {
       this.isCreating = true
       try {
-        await axios.post('/api/products.json', { product: this.product })
+        await this.$axios.post('/api/products.json', { product: this.product })
         this.$swal.fire({
           text: "Success, Product has been added.",
           icon: "success",

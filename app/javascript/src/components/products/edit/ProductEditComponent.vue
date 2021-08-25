@@ -63,8 +63,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
+  inject: ['$axios'],
   data() {
     return {
       product: {},
@@ -78,7 +78,7 @@ export default {
   methods: {
     async loadProduct() {
       try {
-        const data = await axios.get(`/api/products/${this.$route.params.id}/edit.json`);
+        const data = await this.$axios.get(`/api/products/${this.$route.params.id}/edit.json`);
         this.product = data.data.product;
       } catch (err) {
         console.log('error', err);
@@ -88,7 +88,7 @@ export default {
     async saveProduct() {
       this.isUpdating = true
       try {
-        await axios.patch(`/api/products/${this.$route.params.id}.json`, { product: this.product })
+        await this.$axios.patch(`/api/products/${this.$route.params.id}.json`, { product: this.product })
         this.$swal.fire({
           text: "Success, Product has been updated.",
           icon: "success",

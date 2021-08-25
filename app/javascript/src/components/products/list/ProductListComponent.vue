@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import ProductDetail from "../list/ProductDetail";
 import VPagination from "@hennge/vue3-pagination";
 
@@ -58,6 +57,7 @@ export default {
     ProductDetail,
     VPagination
   },
+  inject: ['$axios'],
   data() {
     return {
       products: [],
@@ -72,7 +72,7 @@ export default {
     async loadProducts() {
       this.isLoading = true;
       try {
-        const data = await axios.get('/api/products.json', { params: this.$route.query });
+        const data = await this.$axios.get('/api/products.json', { params: this.$route.query });
         this.products = data.data.products;
         this.pagination = data.data.meta.pagination;
       } catch (err) {
@@ -83,7 +83,7 @@ export default {
     },
     async deleteProduct(id) {
       try {
-        await axios.delete(`/api/products/${id}.json`)
+        await this.$axios.delete(`/api/products/${id}.json`)
       } catch (err) {
         console.log('error', err);
       }
