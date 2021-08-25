@@ -54,7 +54,7 @@ export default {
       pagination: null,
     };
   },
-  mounted() {
+  created() {
     this.loadProducts();
   },
   methods: {
@@ -68,6 +68,7 @@ export default {
         console.log('error', err);
       }
       this.isLoading = false;
+      this.$emit('totalProduct', this.pagination.count)
     },
     async deleteProduct(id) {
       try {

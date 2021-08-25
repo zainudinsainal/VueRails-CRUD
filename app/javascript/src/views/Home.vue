@@ -5,8 +5,8 @@
         <div class="col-md-2">
           <router-link to="/products" class="btn btn-primary p-4 dashboard-widget">
             All Products
-            <span class="badge badge-success">
-              20
+            <span class="badge badge-success" v-if="totalCount">
+              {{ totalCount }}
             </span>
           </router-link>
         </div>
@@ -17,16 +17,30 @@
         </div>
       </div>
     </div>
+    <div>
+      <product-list-component
+        @totalProduct="totalProduct"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import ProductListComponent from '../components/products/list/ProductListComponent.vue';
+
 export default {
   name: 'Home',
-  components: {
-
+  components: { ProductListComponent },
+  data() {
+    return {
+      totalCount: null
+    };
+  },
+  methods: {
+    totalProduct(count) {
+      this.totalCount = count;
+    }
   }
 }
 </script>
