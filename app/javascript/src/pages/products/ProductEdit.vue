@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ProductEditComponent from './../../components/products/edit/ProductEditComponent';
+import ProductEditComponent from './../../components/products/ProductEditComponent';
 export default {
   components: {
     ProductEditComponent

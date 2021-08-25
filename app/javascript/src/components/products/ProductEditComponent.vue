@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card">
       <div class="card-header">
-        <h6>Add Product</h6>
+        <h6>Edit Product</h6>
       </div>
       <div class="card-body">
         <form v-on:submit.prevent="saveProduct">

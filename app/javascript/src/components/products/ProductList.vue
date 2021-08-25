@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import ProductDetail from "../list/ProductDetail";
+import ProductDetail from "./ProductDetail";
 import VPagination from "@hennge/vue3-pagination";
 import { debounce } from "debounce";
 

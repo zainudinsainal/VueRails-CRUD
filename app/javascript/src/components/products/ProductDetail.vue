@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "ProductDetail",
+  name: "ProductList",
   emit:['deleteProduct'],
   props: {
     product: {
