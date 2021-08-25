@@ -43,7 +43,7 @@ class Api::ProductsController < Api::ApiController
   end
 
   def destroy
-    sleep 5
+    sleep 1
     if @product.destroy
       render json: @product, status: :ok
     else

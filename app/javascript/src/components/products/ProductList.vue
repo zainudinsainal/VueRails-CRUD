@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="">
-      <div class="" v-if="!isLoading">
+      <div class="">
         <div class="row border-bottom border-top p-2 bg-light">
           <div class="col-3">Product Name</div>
           <div class="col-2">Product Price</div>
@@ -29,12 +29,14 @@
             @deleteProduct="deleteProduct"/>
         </div>
       </div>
+      <!--
       <div v-if="isLoading" class="text-center mt-5 mb-5">
         Loading Products...
         <div class="spinner-grow" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
+      -->
     </div>
 
     <!-- Insert Pagination Part -->
