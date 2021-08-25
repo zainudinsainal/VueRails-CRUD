@@ -1,5 +1,5 @@
 class Api::ProductsController < Api::ApiController
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @pagy, @products = pagy(Product.all, items: 5)
@@ -38,6 +38,15 @@ class Api::ProductsController < Api::ApiController
       render json: @product, status: :ok
     else
       render json: @product, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    sleep 5
+    if @product.destroy
+      render json: @product, status: :ok
+    else
+      render json: @product, status: :ok
     end
   end
 

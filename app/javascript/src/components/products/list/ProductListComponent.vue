@@ -10,7 +10,10 @@
           <div class="col-2">Actions</div>
         </div>
         <div v-for="(product, index) in products" :key="product.id">
-          <product-detail :index="index" :product="product" />
+          <product-detail
+            :index="index"
+            :product="product"
+            @deleteProduct="deleteProduct"/>
         </div>
       </div>
       <div v-if="isLoading" class="text-center mt-5 mb-5">
@@ -58,7 +61,6 @@ export default {
     async loadProducts() {
       this.isLoading = true;
       try {
-        console.log('test')
         const data = await axios.get('/api/products.json', { params: this.$route.query });
         this.products = data.data.products;
         this.pagination = data.data.meta.pagination;
@@ -67,14 +69,18 @@ export default {
       }
       this.isLoading = false;
     },
-    deleteProductModal() {
+    async deleteProduct(id) {
+      try {
+        await axios.delete(`/api/products/${id}.json`)
+      } catch (err) {
+        console.log('error', err);
+      }
+      this.loadProducts();
       this.$swal.fire({
-        // title: "Error!",
-        text: "Are you sure to delete the product ?",
-        icon: "error",
-        cancelButtonText: "Cancel",
-        confirmButtonText: "Yes, Confirm Delete",
-        showCancelButton: true,
+        text: "Success, Product has been deleted.",
+        icon: "success",
+        position: 'top-end',
+        timer: 1000,
       });
     },
     updateHandler(page) {
