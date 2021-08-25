@@ -9,6 +9,8 @@
           type="text"
           class="form-control"
           placeholder="Search Products..."
+          @input="searchProduct"
+          v-model="search"
         />
       </div>
     </div>
@@ -51,6 +53,7 @@
 <script>
 import ProductDetail from "../list/ProductDetail";
 import VPagination from "@hennge/vue3-pagination";
+import { debounce } from "debounce";
 
 export default {
   components: {
@@ -63,6 +66,7 @@ export default {
       products: [],
       isLoading: false,
       pagination: null,
+      search: null,
     };
   },
   created() {
@@ -98,7 +102,18 @@ export default {
     updateHandler(page) {
       this.$route.query.page = page;
       this.loadProducts();
+    },
+    searchProduct() {
+      this.$route.query.q = this.search;
     }
   },
+  watch: {
+    search: {
+      handler: debounce(function() {
+        this.loadProducts()
+      }, 1000),
+      deep: true
+    }
+  }
 };
 </script>

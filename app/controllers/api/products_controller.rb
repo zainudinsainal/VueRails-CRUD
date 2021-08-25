@@ -2,7 +2,8 @@ class Api::ProductsController < Api::ApiController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @products = pagy(Product.all, items: 10)
+    @q = Product.ransack({name_i_cont: params[:q]})
+    @pagy, @products = pagy(@q.result(distinct: true), items: 10)
 
     # https://github.com/rails-api/active_model_serializers/blob/v0.10.6/docs/howto/add_pagination_links.md
     render json: @products, meta: meta_attributes(@pagy)
