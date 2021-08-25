@@ -3,12 +3,13 @@
 #
 # Examples:
 #
+
+require 'faker'
+
+35.times do
   products = Product.create(
-    [
-      { name: 'Star Wars', price: 300 },
-      { name: 'Lord of the Rings', price: 400},
-      { name: 'Samsung S10', price: 900},
-      { name: 'Iphone 12', price: 1000},
-    ]
+    name: Faker::Device.model_name,
+    price: Faker::Number.decimal(l_digits: 3, r_digits: 2),
+    description: Faker::Quote.famous_last_words
   )
-#   Character.create(name: 'Luke', movie: movies.first)
+end
